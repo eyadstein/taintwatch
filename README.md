@@ -16,3 +16,8 @@ See `docs/policy-language.md` and `policies/default.twp`.
 
 `taintwatch.spans.TStr` labels character ranges instead of whole values.
 See `docs/span-tracking.md`.
+
+## Agent runtime
+
+`taintwatch.agent` provides a tool registry, a simulated world and a runtime that routes
+every tool call through the guard. See `docs/agent-runtime.md`.
