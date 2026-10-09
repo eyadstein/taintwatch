@@ -11,3 +11,8 @@ Status: early research prototype.
 
 Policies can be written in a small purpose-built language with a static validator.
 See `docs/policy-language.md` and `policies/default.twp`.
+
+## Span-level tracking
+
+`taintwatch.spans.TStr` labels character ranges instead of whole values.
+See `docs/span-tracking.md`.
