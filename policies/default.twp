@@ -1,0 +1,13 @@
+# Taintwatch default policy. Equivalent to DEFAULT_POLICY_TOML in taintwatch.policy.
+
+rule untrusted-input-to-shell: block shell.* when integrity < user
+    because "Shell commands must not be influenced by untrusted content."
+
+rule untrusted-email-recipient: block email.send(to) when integrity < user
+    because "Only the user may choose who receives email."
+
+rule secret-leaves-via-email: block email.send when confidentiality > internal
+
+rule secret-leaves-via-http: block http.* when confidentiality > internal
+
+rule untrusted-file-write: confirm fs.write(content) when integrity < tool_output

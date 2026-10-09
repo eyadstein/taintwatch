@@ -6,3 +6,8 @@ checked against a declarative policy, so untrusted text (a web page, an inbound
 email) cannot silently steer shell commands or leak secrets.
 
 Status: early research prototype.
+
+## Policy language
+
+Policies can be written in a small purpose-built language with a static validator.
+See `docs/policy-language.md` and `policies/default.twp`.
