@@ -21,3 +21,8 @@ See `docs/span-tracking.md`.
 
 `taintwatch.agent` provides a tool registry, a simulated world and a runtime that routes
 every tool call through the guard. See `docs/agent-runtime.md`.
+
+## Benchmark
+
+`taintwatch.bench` generates 600+ attack scenarios and 200 benign tasks from a seed.
+See `docs/benchmark.md`. The generated dataset is in `data/scenarios.jsonl`.
