@@ -1,3 +1,5 @@
+[![CI](https://github.com/eyadstein/taintwatch/actions/workflows/ci.yml/badge.svg)](https://github.com/eyadstein/taintwatch/actions/workflows/ci.yml)
+
 # Taintwatch
 
 Runtime information-flow control for LLM agents. Every piece of data carries an
