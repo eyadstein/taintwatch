@@ -32,3 +32,9 @@ See `docs/benchmark.md`. The generated dataset is in `data/scenarios.jsonl`.
 `taintwatch.baselines` implements the defenses we compare against: keyword filter,
 heuristic scorer, a spotlighting model and a coarse-taint ablation.
 Try `python -m taintwatch.baselines`. See `docs/baselines.md`.
+
+## Evaluation
+
+`python -m taintwatch.evaluation` runs the benchmark under every defense and writes
+`results/records.csv`, `results/summary.json` and `results/report.md`.
+See `docs/evaluation.md`.

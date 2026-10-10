@@ -1,0 +1,252 @@
+{
+  "config": {
+    "seed": 7,
+    "attacks": 600,
+    "benign": 200,
+    "repeats": 3,
+    "confirm": false
+  },
+  "defenses": [
+    {
+      "defense": "none",
+      "attack_success": {
+        "hits": 600,
+        "total": 600,
+        "rate": 1.0,
+        "lo": 0.9936382989862994,
+        "hi": 1.0
+      },
+      "utility_under_attack": {
+        "hits": 600,
+        "total": 600,
+        "rate": 1.0,
+        "lo": 0.9936382989862994,
+        "hi": 1.0
+      },
+      "benign_utility": {
+        "hits": 200,
+        "total": 200,
+        "rate": 1.0,
+        "lo": 0.9811546736227335,
+        "hi": 1.0
+      },
+      "benign_blocked": {
+        "hits": 0,
+        "total": 200,
+        "rate": 0.0,
+        "lo": 1.734723475976807e-18,
+        "hi": 0.018845326377266575
+      },
+      "latency_median_ms": 0.21459999697981402,
+      "latency_p95_ms": 0.3311049957119393,
+      "overhead": 1.0
+    },
+    {
+      "defense": "taintwatch",
+      "attack_success": {
+        "hits": 0,
+        "total": 600,
+        "rate": 0.0,
+        "lo": 4.336808689942018e-19,
+        "hi": 0.00636170101370071
+      },
+      "utility_under_attack": {
+        "hits": 600,
+        "total": 600,
+        "rate": 1.0,
+        "lo": 0.9936382989862994,
+        "hi": 1.0
+      },
+      "benign_utility": {
+        "hits": 172,
+        "total": 200,
+        "rate": 0.86,
+        "lo": 0.8051011913429243,
+        "hi": 0.9013301736654437
+      },
+      "benign_blocked": {
+        "hits": 28,
+        "total": 200,
+        "rate": 0.14,
+        "lo": 0.09866982633455634,
+        "hi": 0.1948988086570756
+      },
+      "latency_median_ms": 0.27210000189370476,
+      "latency_p95_ms": 0.4297049963497555,
+      "overhead": 1.2679403808160323
+    },
+    {
+      "defense": "taintwatch-coarse",
+      "attack_success": {
+        "hits": 0,
+        "total": 600,
+        "rate": 0.0,
+        "lo": 4.336808689942018e-19,
+        "hi": 0.00636170101370071
+      },
+      "utility_under_attack": {
+        "hits": 600,
+        "total": 600,
+        "rate": 1.0,
+        "lo": 0.9936382989862994,
+        "hi": 1.0
+      },
+      "benign_utility": {
+        "hits": 143,
+        "total": 200,
+        "rate": 0.715,
+        "lo": 0.6488465397039482,
+        "hi": 0.7730499699538271
+      },
+      "benign_blocked": {
+        "hits": 57,
+        "total": 200,
+        "rate": 0.285,
+        "lo": 0.22695003004617292,
+        "hi": 0.3511534602960517
+      },
+      "latency_median_ms": 0.3087999975832645,
+      "latency_p95_ms": 0.5320499982190086,
+      "overhead": 1.4389562065665418
+    },
+    {
+      "defense": "keyword",
+      "attack_success": {
+        "hits": 162,
+        "total": 600,
+        "rate": 0.27,
+        "lo": 0.23602264667772457,
+        "hi": 0.3069037357885778
+      },
+      "utility_under_attack": {
+        "hits": 162,
+        "total": 600,
+        "rate": 0.27,
+        "lo": 0.23602264667772457,
+        "hi": 0.3069037357885778
+      },
+      "benign_utility": {
+        "hits": 166,
+        "total": 200,
+        "rate": 0.83,
+        "lo": 0.7718411637168737,
+        "hi": 0.8757209208741302
+      },
+      "benign_blocked": {
+        "hits": 0,
+        "total": 200,
+        "rate": 0.0,
+        "lo": 1.734723475976807e-18,
+        "hi": 0.018845326377266575
+      },
+      "latency_median_ms": 0.19729999621631578,
+      "latency_p95_ms": 0.3957450007874285,
+      "overhead": 0.9193848974512076
+    },
+    {
+      "defense": "scorer@2.5",
+      "attack_success": {
+        "hits": 186,
+        "total": 600,
+        "rate": 0.31,
+        "lo": 0.27430033852750413,
+        "hi": 0.3481171078577022
+      },
+      "utility_under_attack": {
+        "hits": 186,
+        "total": 600,
+        "rate": 0.31,
+        "lo": 0.27430033852750413,
+        "hi": 0.3481171078577022
+      },
+      "benign_utility": {
+        "hits": 182,
+        "total": 200,
+        "rate": 0.91,
+        "lo": 0.8622342812328346,
+        "hi": 0.9423125511378069
+      },
+      "benign_blocked": {
+        "hits": 0,
+        "total": 200,
+        "rate": 0.0,
+        "lo": 1.734723475976807e-18,
+        "hi": 0.018845326377266575
+      },
+      "latency_median_ms": 0.42610000309650786,
+      "latency_p95_ms": 0.8527550024155062,
+      "overhead": 1.985554562410307
+    },
+    {
+      "defense": "spotlight@0.9",
+      "attack_success": {
+        "hits": 52,
+        "total": 600,
+        "rate": 0.08666666666666667,
+        "lo": 0.06670240369849674,
+        "hi": 0.11188993580616254
+      },
+      "utility_under_attack": {
+        "hits": 600,
+        "total": 600,
+        "rate": 1.0,
+        "lo": 0.9936382989862994,
+        "hi": 1.0
+      },
+      "benign_utility": {
+        "hits": 200,
+        "total": 200,
+        "rate": 1.0,
+        "lo": 0.9811546736227335,
+        "hi": 1.0
+      },
+      "benign_blocked": {
+        "hits": 0,
+        "total": 200,
+        "rate": 0.0,
+        "lo": 1.734723475976807e-18,
+        "hi": 0.018845326377266575
+      },
+      "latency_median_ms": 0.19249999968451448,
+      "latency_p95_ms": 0.3449499989073955,
+      "overhead": 0.897017718516658
+    }
+  ],
+  "paired_vs_taintwatch": [
+    {
+      "defense": "none",
+      "pivot": "taintwatch",
+      "only_defense_succeeds": 600,
+      "only_pivot_succeeds": 0,
+      "mcnemar_p": 4.819839730205768e-181
+    },
+    {
+      "defense": "taintwatch-coarse",
+      "pivot": "taintwatch",
+      "only_defense_succeeds": 0,
+      "only_pivot_succeeds": 0,
+      "mcnemar_p": 1.0
+    },
+    {
+      "defense": "keyword",
+      "pivot": "taintwatch",
+      "only_defense_succeeds": 162,
+      "only_pivot_succeeds": 0,
+      "mcnemar_p": 3.4211388289180104e-49
+    },
+    {
+      "defense": "scorer@2.5",
+      "pivot": "taintwatch",
+      "only_defense_succeeds": 186,
+      "only_pivot_succeeds": 0,
+      "mcnemar_p": 2.039157646249539e-56
+    },
+    {
+      "defense": "spotlight@0.9",
+      "pivot": "taintwatch",
+      "only_defense_succeeds": 52,
+      "only_pivot_succeeds": 0,
+      "mcnemar_p": 4.440892098500626e-16
+    }
+  ]
+}
