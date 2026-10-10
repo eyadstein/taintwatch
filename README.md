@@ -38,3 +38,8 @@ Try `python -m taintwatch.baselines`. See `docs/baselines.md`.
 `python -m taintwatch.evaluation` runs the benchmark under every defense and writes
 `results/records.csv`, `results/summary.json` and `results/report.md`.
 See `docs/evaluation.md`.
+
+## Server
+
+`python -m taintwatch.server` serves a REST API over the benchmark with a SQLite trace store.
+Install with `pip install -e ".[dev,server]"`. See `docs/server.md`.
