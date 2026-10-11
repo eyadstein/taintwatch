@@ -76,3 +76,41 @@ export interface RunRequest {
   seed?: number;
   confirm?: boolean;
 }
+
+export interface PlanStepInfo {
+  tool: string;
+  args: Record<string, string>;
+}
+
+export interface WebPage {
+  url: string;
+  text: string;
+}
+
+export interface FileInfo {
+  path: string;
+  content: string;
+  integrity: Integrity;
+  confidentiality: Confidentiality;
+}
+
+export interface CheckInfo {
+  effect: string;
+  value: string;
+}
+
+export interface ScenarioDetail extends ScenarioSummary {
+  plan: PlanStepInfo[];
+  answer: string;
+  web: WebPage[];
+  inbox: string[];
+  files: FileInfo[];
+  attack: CheckInfo | null;
+  utility: CheckInfo | null;
+}
+
+export interface FamilyInfo {
+  family: string;
+  is_attack: boolean;
+  count: number;
+}

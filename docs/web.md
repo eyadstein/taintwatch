@@ -14,3 +14,15 @@ Vite proxies `/api` to the Python server, so no CORS setup is needed in developm
 Checks: `npm --prefix web run typecheck`, `npm --prefix web test`, `npm --prefix web run build`.
 
 Limits: scenarios load 500 at a time, so the launcher is not a full scenario browser.
+
+## Scenario browser and comparison (Part 10)
+
+The **Scenarios** tab pages through every scenario, 25 at a time, filtered by type and family.
+A scenario shows its task, the web pages, inbox messages and files the agent reads (injected
+`<<call ...>>` directives are highlighted), the agent's plan, and the success checks in plain
+English. "Compare two defenses" runs the same scenario under two defenses with the same seed and
+shows a difference table plus both traces side by side. Both runs are stored and appear in the
+Runs tab.
+
+Directive highlighting is a pattern match on the mock agent's attack format, not a general
+injection detector.

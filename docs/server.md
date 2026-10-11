@@ -24,3 +24,4 @@ viewer can color each span of the agent's context by its trust level.
 - No authentication or rate limiting. Run it locally only.
 - It drives the mock agent, not a real model.
 - CORS allows the Vite dev server on port 5173 only.
+| `GET /api/families` | Scenario families with their counts and whether they are attacks. |

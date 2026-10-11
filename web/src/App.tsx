@@ -4,8 +4,12 @@ import type { HealthInfo, Page, RunDetail, RunSummary } from "./api/types";
 import { RunForm } from "./components/RunForm";
 import { RunList } from "./components/RunList";
 import { RunView } from "./components/RunView";
+import { ScenarioBrowser } from "./components/ScenarioBrowser";
+
+type View = "runs" | "scenarios";
 
 export default function App() {
+  const [view, setView] = useState<View>("runs");
   const [health, setHealth] = useState<HealthInfo | null>(null);
   const [runs, setRuns] = useState<Page<RunSummary>>({ total: 0, items: [] });
   const [selected, setSelected] = useState<RunDetail | null>(null);
@@ -67,30 +71,52 @@ export default function App() {
             : "Connecting to the API..."}
         </p>
       </header>
+      <nav className="tabs" aria-label="Views">
+        <button
+          type="button"
+          className={view === "runs" ? "tab active" : "tab"}
+          aria-pressed={view === "runs"}
+          onClick={() => setView("runs")}
+        >
+          Runs
+        </button>
+        <button
+          type="button"
+          className={view === "scenarios" ? "tab active" : "tab"}
+          aria-pressed={view === "scenarios"}
+          onClick={() => setView("scenarios")}
+        >
+          Scenarios
+        </button>
+      </nav>
       {error && (
         <p className="error" role="alert">
           {error}
         </p>
       )}
-      <div className="layout">
-        <aside>
-          <RunForm onCreated={created} onError={setError} />
-          <h2>Runs ({runs.total})</h2>
-          <RunList
-            runs={runs.items}
-            selectedId={selected?.id ?? null}
-            onSelect={(id) => void open(id)}
-            onDelete={(id) => void remove(id)}
-          />
-        </aside>
-        <main>
-          {selected ? (
-            <RunView run={selected} />
-          ) : (
-            <p className="empty">Select a run or start a new one.</p>
-          )}
-        </main>
-      </div>
+      {view === "runs" ? (
+        <div className="layout">
+          <aside>
+            <RunForm onCreated={created} onError={setError} />
+            <h2>{`Runs (${runs.total})`}</h2>
+            <RunList
+              runs={runs.items}
+              selectedId={selected?.id ?? null}
+              onSelect={(id) => void open(id)}
+              onDelete={(id) => void remove(id)}
+            />
+          </aside>
+          <main>
+            {selected ? (
+              <RunView run={selected} />
+            ) : (
+              <p className="empty">Select a run or start a new one.</p>
+            )}
+          </main>
+        </div>
+      ) : (
+        <ScenarioBrowser onError={setError} onChanged={() => void refresh()} />
+      )}
     </div>
   );
 }

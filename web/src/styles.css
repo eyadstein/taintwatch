@@ -355,3 +355,108 @@ input:focus-visible {
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.4rem 0.9rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tab.active {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.card h2 .chip {
+  font-size: 0.8rem;
+  font-weight: 400;
+  border: 1px solid var(--line);
+}
+
+.pager {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pager button {
+  padding: 0.3rem 0.7rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.pager button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.source {
+  margin: 0;
+  padding: 0.75rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+mark.directive {
+  color: var(--untrusted-ink);
+  background: var(--untrusted-bg);
+  border-bottom: 2px solid var(--bad);
+  border-radius: 3px;
+}
+
+.plan {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 860px) {
+  .compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.diff {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diff th,
+.diff td {
+  padding: 0.35rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.diff thead th {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.diff tr.differs td,
+.diff tr.differs th {
+  font-weight: 700;
+}

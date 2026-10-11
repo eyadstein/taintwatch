@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from typing import Annotated, Any
 
 from fastapi import FastAPI, HTTPException, Query, Response
@@ -147,6 +148,14 @@ def create_app(db_path: str = "taintwatch.db", suite: Suite | None = None) -> Fa
         if not store.delete_run(run_id):
             raise HTTPException(status_code=404, detail=f"unknown run {run_id}")
         return Response(status_code=204)
+
+    @app.get("/api/families")
+    def families() -> list[dict[str, Any]]:
+        counts = Counter((s.family, s.is_attack) for s in scenarios)
+        return [
+            {"family": family, "is_attack": is_attack, "count": count}
+            for (family, is_attack), count in sorted(counts.items())
+        ]
 
     @app.get("/api/stats")
     def stats() -> list[dict[str, Any]]:
