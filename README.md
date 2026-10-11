@@ -49,3 +49,8 @@ Install with `pip install -e ".[dev,server]"`. See `docs/server.md`.
 ## Trace viewer
 
 `web/` holds a React + TypeScript viewer for stored runs. See `docs/web.md`.
+
+## Analysis
+
+`python -m taintwatch.analysis sweeps` writes parameter sweeps and `notebooks/` holds two
+generated Jupyter notebooks. See `docs/analysis.md`.
