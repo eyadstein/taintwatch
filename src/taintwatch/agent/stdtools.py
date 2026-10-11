@@ -9,6 +9,7 @@ from taintwatch.labels import Integrity
 
 def build_standard_registry(world: World) -> ToolRegistry:
     def web_fetch(url: str) -> ToolOutput:
+        world.fetched.append(url)
         body = world.web.get(url, "[404 not found]")
         return ToolOutput(body, Integrity.UNTRUSTED, source=f"web:{url}")
 

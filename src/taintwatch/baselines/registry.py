@@ -7,6 +7,7 @@ from collections.abc import Callable, Sequence
 from taintwatch.baselines.defense import Defense
 from taintwatch.baselines.keyword import DEFAULT_PHRASES, KeywordFilter
 from taintwatch.baselines.scorer import HeuristicScorer
+from taintwatch.baselines.strict import strict_policy
 from taintwatch.baselines.wrappers import (
     context_taint_wrapper,
     detector_wrapper,
@@ -35,6 +36,14 @@ def coarse_defense() -> Defense:
         "Ablation: default policy, but calls carry the taint of the whole context.",
         default_policy(),
         context_taint_wrapper,
+    )
+
+
+def strict_defense() -> Defense:
+    return Defense(
+        "taintwatch-strict",
+        "Default rules plus public-only egress thresholds and a rule for web fetches.",
+        strict_policy(),
     )
 
 
@@ -72,6 +81,7 @@ _SIMPLE: dict[str, Callable[[], Defense]] = {
     "none": no_defense,
     "taintwatch": taintwatch_defense,
     "taintwatch-coarse": coarse_defense,
+    "taintwatch-strict": strict_defense,
     "keyword": keyword_defense,
 }
 _PARAMETRIC: dict[str, tuple[Callable[[float], Defense], float]] = {

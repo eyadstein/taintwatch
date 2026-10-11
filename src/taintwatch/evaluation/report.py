@@ -200,10 +200,15 @@ def _benign_matrix(records: Sequence[RunRecord], names: Sequence[str]) -> str:
 
 
 def render_markdown(
-    records: Sequence[RunRecord], summaries: Sequence[DefenseSummary], pivot: str = PIVOT
+    records: Sequence[RunRecord],
+    summaries: Sequence[DefenseSummary],
+    pivot: str = PIVOT,
+    *,
+    title: str = "Taintwatch benchmark results",
+    notes: Sequence[str] = NOTES,
 ) -> str:
     names = [s.defense for s in summaries]
-    parts = ["# Taintwatch benchmark results", ""]
+    parts = [f"# {title}", ""]
     if summaries:
         first = summaries[0]
         parts.append(
@@ -228,5 +233,5 @@ def render_markdown(
         ]
         parts += ["", f"## Paired comparison against {pivot}", "", _table(headers, rows)]
     parts += ["", "## Notes", ""]
-    parts += [f"- {note}" for note in NOTES]
+    parts += [f"- {note}" for note in notes]
     return "\n".join(parts) + "\n"

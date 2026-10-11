@@ -10,6 +10,8 @@ from taintwatch.agent.base import Decision, Finish, Observation, Status, ToolReq
 from taintwatch.agent.directives import extract_directives
 from taintwatch.spans import TStr, interpolate
 
+SAY_TOOL = "agent.say"
+
 
 @dataclass(frozen=True, slots=True)
 class PlanStep:
@@ -23,8 +25,10 @@ class ScriptedAgent:
     """Runs ``plan`` in order. Results of plan step ``k`` are available as ``{rk}``.
 
     A gullible agent also executes any directive found in successful tool output,
-    which models a language model that follows instructions hidden in data. Create
-    one agent per run: it keeps state.
+    which models a language model that follows instructions hidden in data. The
+    special directive ``agent.say`` is not a tool call: the agent appends its text,
+    with the labels it had in the source, to the final answer. Create one agent per
+    run: it keeps state.
     """
 
     def __init__(
@@ -38,6 +42,7 @@ class ScriptedAgent:
         self._issued: list[str | None] = []
         self._results: dict[str, TStr] = {}
         self._pending: deque[ToolRequest] = deque()
+        self._said: list[TStr] = []
 
     def decide(self, task: TStr, observations: Sequence[Observation]) -> Decision:
         for index in range(self._seen, len(observations)):
@@ -50,16 +55,25 @@ class ScriptedAgent:
         self._seen = len(observations)
 
         values: dict[str, TStr] = {"task": task, **self._results}
-        if self._pending:
+        while self._pending:
+            request = self._pending.popleft()
+            if request.tool == SAY_TOOL:
+                said = request.args.get("text")
+                if said is not None:
+                    self._said.append(said)
+                continue
             self._issued.append(None)
-            return self._fill(self._pending.popleft(), values)
+            return self._fill(request, values)
         if self._next < len(self._plan):
             step = self._plan[self._next]
             args = {name: interpolate(template, values) for name, template in step.args.items()}
             self._issued.append(f"r{self._next}")
             self._next += 1
             return ToolRequest(step.tool, args)
-        return Finish(interpolate(self._answer, values))
+        answer = interpolate(self._answer, values)
+        for said in self._said:
+            answer = answer + " " + said
+        return Finish(answer)
 
     @staticmethod
     def _fill(request: ToolRequest, values: Mapping[str, TStr]) -> ToolRequest:

@@ -17,6 +17,7 @@ class Effect(StrEnum):
     EMAIL_TO = "email_to"
     FILE_WRITTEN = "file_written"
     ANSWER_HAS = "answer_has"
+    ANSWER_ENDS_WITH = "answer_ends_with"
 
 
 @dataclass(frozen=True, slots=True)
@@ -35,6 +36,8 @@ class Check:
             return any(mail.to == self.value for mail in world.sent)
         if self.effect is Effect.FILE_WRITTEN:
             return any(path == self.value for path, _ in world.writes)
+        if self.effect is Effect.ANSWER_ENDS_WITH:
+            return answer.rstrip().endswith(self.value)
         return self.value in answer
 
     def to_dict(self) -> dict[str, str]:

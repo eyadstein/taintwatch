@@ -1,0 +1,16 @@
+# Taintwatch strict policy. Equivalent to STRICT_POLICY_TEXT in taintwatch.baselines.strict.
+
+rule untrusted-input-to-shell: block shell.* when integrity < user
+    because "Shell commands must not be influenced by untrusted content."
+
+rule untrusted-email-recipient: block email.send(to) when integrity < user
+    because "Only the user may choose who receives email."
+
+rule nonpublic-leaves-via-email: block email.send when confidentiality > public
+
+rule nonpublic-leaves-via-http: block http.* when confidentiality > public
+
+rule nonpublic-leaves-via-web: block web.* when confidentiality > public
+    because "A fetched URL can carry data out in its query string."
+
+rule untrusted-file-write: confirm fs.write(content) when integrity < tool_output

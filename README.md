@@ -54,3 +54,8 @@ Install with `pip install -e ".[dev,server]"`. See `docs/server.md`.
 
 `python -m taintwatch.analysis sweeps` writes parameter sweeps and `notebooks/` holds two
 generated Jupyter notebooks. See `docs/analysis.md`.
+
+## Outside the guarded sinks
+
+`python -m taintwatch.evaluation.outside` runs four attack goals the default policy does not
+cover, plus a stricter `taintwatch-strict` policy. See `docs/outside.md`.

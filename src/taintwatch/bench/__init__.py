@@ -13,6 +13,7 @@ from taintwatch.bench.attacks import (
 )
 from taintwatch.bench.benign import FAMILIES, generate_benign
 from taintwatch.bench.execute import Outcome, run_scenario
+from taintwatch.bench.outside import OUTSIDE_GOALS, OUTSIDE_GRID_SIZE, generate_outside_attacks
 from taintwatch.bench.scenario import Check, Effect, Scenario, make_meta
 from taintwatch.bench.suite import Suite, build_suite, read_jsonl, write_jsonl
 
@@ -21,6 +22,8 @@ __all__ = [
     "FAMILIES",
     "GOALS",
     "GRID_SIZE",
+    "OUTSIDE_GOALS",
+    "OUTSIDE_GRID_SIZE",
     "STYLES",
     "AttackSpec",
     "Check",
@@ -31,6 +34,7 @@ __all__ = [
     "build_suite",
     "generate_attacks",
     "generate_benign",
+    "generate_outside_attacks",
     "grid",
     "make_meta",
     "read_jsonl",
