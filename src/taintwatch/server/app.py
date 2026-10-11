@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from taintwatch import __version__
 from taintwatch.baselines import DEFAULT_SPECS, build_defense
 from taintwatch.bench import Scenario, Suite, build_suite
+from taintwatch.server.results import load_results
 from taintwatch.server.service import record_run
 from taintwatch.server.store import TraceStore
 
@@ -61,7 +62,11 @@ def _scenario_detail(scenario: Scenario) -> dict[str, Any]:
     return detail
 
 
-def create_app(db_path: str = "taintwatch.db", suite: Suite | None = None) -> FastAPI:
+def create_app(
+    db_path: str = "taintwatch.db",
+    suite: Suite | None = None,
+    results_dir: str = "results",
+) -> FastAPI:
     """Build the API. ``db_path=":memory:"`` keeps everything in memory (tests)."""
     app = FastAPI(title="Taintwatch", version=__version__)
     app.add_middleware(
@@ -156,6 +161,16 @@ def create_app(db_path: str = "taintwatch.db", suite: Suite | None = None) -> Fa
             {"family": family, "is_attack": is_attack, "count": count}
             for (family, is_attack), count in sorted(counts.items())
         ]
+
+    @app.get("/api/results")
+    def results() -> dict[str, Any]:
+        data = load_results(results_dir)
+        if data is None:
+            raise HTTPException(
+                status_code=404,
+                detail="no results found; run python -m taintwatch.evaluation first",
+            )
+        return data
 
     @app.get("/api/stats")
     def stats() -> list[dict[str, Any]]:

@@ -3,10 +3,11 @@ import { api, errorMessage } from "./api/client";
 import type { HealthInfo, Page, RunDetail, RunSummary } from "./api/types";
 import { RunForm } from "./components/RunForm";
 import { RunList } from "./components/RunList";
+import { ResultsView } from "./components/ResultsView";
 import { RunView } from "./components/RunView";
 import { ScenarioBrowser } from "./components/ScenarioBrowser";
 
-type View = "runs" | "scenarios";
+type View = "runs" | "scenarios" | "results";
 
 export default function App() {
   const [view, setView] = useState<View>("runs");
@@ -88,6 +89,14 @@ export default function App() {
         >
           Scenarios
         </button>
+        <button
+          type="button"
+          className={view === "results" ? "tab active" : "tab"}
+          aria-pressed={view === "results"}
+          onClick={() => setView("results")}
+        >
+          Results
+        </button>
       </nav>
       {error && (
         <p className="error" role="alert">
@@ -115,7 +124,11 @@ export default function App() {
           </main>
         </div>
       ) : (
-        <ScenarioBrowser onError={setError} onChanged={() => void refresh()} />
+        view === "results" ? (
+          <ResultsView onError={setError} />
+        ) : (
+          <ScenarioBrowser onError={setError} onChanged={() => void refresh()} />
+        )
       )}
     </div>
   );

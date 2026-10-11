@@ -26,3 +26,10 @@ Runs tab.
 
 Directive highlighting is a pattern match on the mock agent's attack format, not a general
 injection detector.
+
+## Results tab (Part 11)
+
+The **Results** tab shows the benchmark tables and bar charts with 95% intervals, breakdowns by
+goal, carrier, style and benign family, and the paired tests. It needs `results/records.csv`,
+which `python -m taintwatch.evaluation` writes. Start the server from the repository root so it
+finds the `results/` folder.

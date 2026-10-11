@@ -114,3 +114,40 @@ export interface FamilyInfo {
   is_attack: boolean;
   count: number;
 }
+
+export interface RateInfo {
+  hits: number;
+  total: number;
+  rate: number;
+  lo: number;
+  hi: number;
+}
+
+export interface DefenseResult {
+  defense: string;
+  attack_success: RateInfo;
+  utility_under_attack: RateInfo;
+  benign_utility: RateInfo;
+  benign_blocked: RateInfo;
+  latency_median_ms: number;
+  latency_p95_ms: number;
+  overhead: number | null;
+}
+
+export interface PairedInfo {
+  defense: string;
+  pivot: string;
+  only_defense_succeeds: number;
+  only_pivot_succeeds: number;
+  mcnemar_p: number;
+}
+
+export type RateGroups = Record<string, Record<string, RateInfo>>;
+
+export interface ResultsData {
+  pivot: string;
+  defenses: DefenseResult[];
+  attack_breakdown: Record<string, RateGroups>;
+  benign_breakdown: RateGroups;
+  paired: PairedInfo[];
+}

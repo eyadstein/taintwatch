@@ -7,6 +7,7 @@ import type {
   RunRequest,
   RunSummary,
   ScenarioDetail,
+  ResultsData,
   ScenarioSummary,
 } from "./types";
 
@@ -62,6 +63,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   health: () => request<HealthInfo>("/api/health"),
+  results: () => request<ResultsData>("/api/results"),
   defenses: () => request<DefenseInfo[]>("/api/defenses"),
   families: () => request<FamilyInfo[]>("/api/families"),
   scenarios: (params: { attack?: boolean; family?: string; limit?: number; offset?: number }) =>

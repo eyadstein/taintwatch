@@ -15,6 +15,8 @@
 | `GET /api/runs/{id}` | One run with its events and the labeled context as segments. |
 | `DELETE /api/runs/{id}` | Remove a stored run. |
 | `GET /api/stats` | Per-defense totals and rates over stored runs. |
+| `GET /api/families` | Scenario families with their counts and whether they are attacks. |
+| `GET /api/results` | Evaluation tables computed from `results/records.csv`. 404 until `python -m taintwatch.evaluation` has run. |
 
 A run's `context` is a list of `{text, integrity, confidentiality, sources}` segments, so a
 viewer can color each span of the agent's context by its trust level.
@@ -24,4 +26,3 @@ viewer can color each span of the agent's context by its trust level.
 - No authentication or rate limiting. Run it locally only.
 - It drives the mock agent, not a real model.
 - CORS allows the Vite dev server on port 5173 only.
-| `GET /api/families` | Scenario families with their counts and whether they are attacks. |

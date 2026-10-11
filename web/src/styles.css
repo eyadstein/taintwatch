@@ -460,3 +460,79 @@ mark.directive {
 .diff tr.differs th {
   font-weight: 700;
 }
+
+.chart-card figcaption {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chart text {
+  fill: var(--ink);
+  font-size: 12px;
+}
+
+.chart-value {
+  fill: var(--muted);
+}
+
+.chart-track {
+  fill: var(--bg);
+  stroke: var(--line);
+}
+
+.chart-bad {
+  fill: var(--bad);
+}
+
+.chart-good {
+  fill: var(--good);
+}
+
+.chart-ci {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.data th,
+.data td {
+  padding: 0.35rem 0.6rem;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+}
+
+.data thead th {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.cell-good {
+  color: var(--user-ink);
+  background: var(--user-bg);
+}
+
+.cell-bad {
+  color: var(--untrusted-ink);
+  background: var(--untrusted-bg);
+}
+
+.cell-mid {
+  color: var(--tool_output-ink);
+  background: var(--tool_output-bg);
+}
